@@ -1,23 +1,16 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
-from torchvision.datasets.mnist import MNIST
-import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
-from torch.autograd import Variable
 
-import numpy as np
 import argparse
 from matplotlib import pyplot as plt
-from PIL import Image
 
-from helpers import get_device, rotate_img, one_hot_embedding
-from data import dataloaders, digit_one
-from train import train_model
+from evidential_tools.helpers import get_device
+from evidential_tools.data import dataloaders, digit_one
+from scripts.train import train_model
 from test import rotating_image_classification, test_single_image
-from losses import edl_mse_loss, edl_digamma_loss, edl_log_loss, relu_evidence
-from lenet import LeNet
+from evidential_tools.losses import edl_mse_loss, edl_digamma_loss, edl_log_loss
+from evidential_tools.lenet import LeNet
 
 
 def main():
@@ -141,17 +134,17 @@ def main():
         if use_uncertainty:
             if args.digamma:
                 checkpoint = torch.load("./results/model_uncertainty_digamma.pt")
-                filename = "./results/rotate_uncertainty_digamma.jpg"
+                filename = "../results/rotate_uncertainty_digamma.jpg"
             if args.log:
                 checkpoint = torch.load("./results/model_uncertainty_log.pt")
-                filename = "./results/rotate_uncertainty_log.jpg"
+                filename = "../results/rotate_uncertainty_log.jpg"
             if args.mse:
                 checkpoint = torch.load("./results/model_uncertainty_mse.pt")
-                filename = "./results/rotate_uncertainty_mse.jpg"
+                filename = "../results/rotate_uncertainty_mse.jpg"
 
         else:
             checkpoint = torch.load("./results/model.pt")
-            filename = "./results/rotate.jpg"
+            filename = "../results/rotate.jpg"
 
         model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])

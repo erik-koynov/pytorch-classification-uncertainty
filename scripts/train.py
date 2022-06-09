@@ -1,9 +1,10 @@
+import sys
+sys.path.append("..")
 import torch
-import torch.nn as nn
 import copy
 import time
-from helpers import get_device, one_hot_embedding
-from losses import relu_evidence
+from evidential_tools.helpers import get_device, one_hot_embedding
+from evidential_tools.losses import relu_evidence
 
 
 def train_model(

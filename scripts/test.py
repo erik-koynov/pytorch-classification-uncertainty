@@ -6,8 +6,8 @@ import os
 import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image
-from losses import relu_evidence
-from helpers import rotate_img, one_hot_embedding, get_device
+from evidential_tools.losses import relu_evidence
+from evidential_tools.helpers import rotate_img, get_device
 
 
 def test_single_image(model, img_path, uncertainty=False, device=None):
